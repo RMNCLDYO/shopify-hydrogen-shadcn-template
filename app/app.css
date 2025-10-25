@@ -1,0 +1,612 @@
+@layer theme, base, components, utilities;
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is([data-theme="dark"] *));
+
+/* Geist Sans Font Face Declarations */
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Geist Mono Font Face Declarations */
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/fonts/GeistMono-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/fonts/GeistMono-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/fonts/GeistMono-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/fonts/GeistMono-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/fonts/GeistMono-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/fonts/GeistMono-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/fonts/GeistMono-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/fonts/GeistMono-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/fonts/GeistMono-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  --color-background: oklch(1 0 0);
+  --color-foreground: oklch(0.145 0 0);
+  --color-card: oklch(1 0 0);
+  --color-card-foreground: oklch(0.145 0 0);
+  --color-popover: oklch(1 0 0);
+  --color-popover-foreground: oklch(0.145 0 0);
+  --color-primary: oklch(0.205 0 0);
+  --color-primary-foreground: oklch(0.985 0 0);
+  --color-secondary: oklch(0.97 0 0);
+  --color-secondary-foreground: oklch(0.205 0 0);
+  --color-muted: oklch(0.97 0 0);
+  --color-muted-foreground: oklch(0.556 0 0);
+  --color-accent: oklch(0.97 0 0);
+  --color-accent-foreground: oklch(0.205 0 0);
+  --color-destructive: oklch(0.577 0.245 27.325);
+  --color-destructive-foreground: oklch(0.985 0 0);
+  --color-border: oklch(0.922 0 0);
+  --color-input: oklch(0.922 0 0);
+  --color-ring: oklch(0.708 0 0);
+  --color-chart-1: oklch(0.646 0.222 41.116);
+  --color-chart-2: oklch(0.6 0.118 184.704);
+  --color-chart-3: oklch(0.398 0.07 227.392);
+  --color-chart-4: oklch(0.828 0.189 84.429);
+  --color-chart-5: oklch(0.769 0.188 70.08);
+
+  --color-sidebar: oklch(0.985 0 0);
+  --color-sidebar-foreground: oklch(0.145 0 0);
+  --color-sidebar-primary: oklch(0.205 0 0);
+  --color-sidebar-primary-foreground: oklch(0.985 0 0);
+  --color-sidebar-accent: oklch(0.97 0 0);
+  --color-sidebar-accent-foreground: oklch(0.205 0 0);
+  --color-sidebar-border: oklch(0.922 0 0);
+  --color-sidebar-ring: oklch(0.708 0 0);
+
+  --radius: 0.625rem;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl:
+    0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  --duration-fade-in: 0.6s;
+  --duration-slide-up: 0.8s;
+  --duration-slide-down: 0.6s;
+  --duration-scale-in: 0.5s;
+  --duration-fade-in-up: 0.6s;
+  --duration-shimmer: 2s;
+}
+
+@layer theme {
+  [data-theme="dark"] {
+    --color-background: oklch(0.145 0 0);
+    --color-foreground: oklch(0.985 0 0);
+    --color-card: oklch(0.145 0 0);
+    --color-card-foreground: oklch(0.985 0 0);
+    --color-popover: oklch(0.145 0 0);
+    --color-popover-foreground: oklch(0.985 0 0);
+    --color-primary: oklch(0.985 0 0);
+    --color-primary-foreground: oklch(0.205 0 0);
+    --color-secondary: oklch(0.269 0 0);
+    --color-secondary-foreground: oklch(0.985 0 0);
+    --color-muted: oklch(0.269 0 0);
+    --color-muted-foreground: oklch(0.708 0 0);
+    --color-accent: oklch(0.269 0 0);
+    --color-accent-foreground: oklch(0.985 0 0);
+    --color-destructive: oklch(0.577 0.245 27.325);
+    --color-destructive-foreground: oklch(0.985 0 0);
+    --color-border: oklch(0.269 0 0);
+    --color-input: oklch(0.269 0 0);
+    --color-ring: oklch(0.439 0 0);
+    --color-chart-1: oklch(0.488 0.243 264.376);
+    --color-chart-2: oklch(0.696 0.17 162.48);
+    --color-chart-3: oklch(0.769 0.188 70.08);
+    --color-chart-4: oklch(0.627 0.265 303.9);
+    --color-chart-5: oklch(0.645 0.246 16.439);
+    --color-sidebar: oklch(0.205 0 0);
+    --color-sidebar-foreground: oklch(0.985 0 0);
+    --color-sidebar-primary: oklch(0.488 0.243 264.376);
+    --color-sidebar-primary-foreground: oklch(0.985 0 0);
+    --color-sidebar-accent: oklch(0.269 0 0);
+    --color-sidebar-accent-foreground: oklch(0.985 0 0);
+    --color-sidebar-border: oklch(0.269 0 0);
+    --color-sidebar-ring: oklch(0.439 0 0);
+  }
+}
+
+@layer utilities {
+
+  /* Consolidated fade animations */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Consolidated slide animations with CSS variables */
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(var(--slide-distance, 20px));
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-down {
+    from {
+      opacity: 0;
+      transform: translateY(calc(-1 * var(--slide-distance, 20px)));
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-right {
+    from {
+      opacity: 0;
+      transform: translateX(calc(-1 * var(--slide-distance, 4px)));
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-page-in {
+    animation: fade-in 1s ease-out both;
+    animation-delay: 100ms;
+  }
+
+  /* Use single animation with CSS variables for different distances */
+  .animate-slide-up {
+    animation: slide-up var(--duration-slide-up, 0.8s) ease-out both;
+    opacity: 0;
+  }
+
+  .animate-slide-down {
+    animation: slide-down var(--duration-slide-down, 0.6s) ease-out both;
+    opacity: 0;
+  }
+
+  .animate-slide-right {
+    --slide-distance: 4px;
+    animation: slide-right 0.7s ease-out both;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    font-family: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  /* React 19.2 View Transitions - Next.js 16 Enhancement */
+  @view-transition {
+    navigation: auto;
+  }
+
+  /* View Transition animations for smooth page transitions */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.3s;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Fade transition for main content - Protected Routes */
+  ::view-transition-old(dashboard-content),
+  ::view-transition-new(dashboard-content),
+  ::view-transition-old(settings-content),
+  ::view-transition-new(settings-content),
+  ::view-transition-old(portal-content),
+  ::view-transition-new(portal-content),
+  ::view-transition-old(twofa-setup),
+  ::view-transition-new(twofa-setup),
+  /* Public Routes */
+  ::view-transition-old(home-content),
+  ::view-transition-new(home-content),
+  ::view-transition-old(products-content),
+  ::view-transition-new(products-content),
+  ::view-transition-old(category-content),
+  ::view-transition-new(category-content),
+  ::view-transition-old(product-detail),
+  ::view-transition-new(product-detail),
+  ::view-transition-old(pricing-content),
+  ::view-transition-new(pricing-content),
+  ::view-transition-old(wishlist-content),
+  ::view-transition-new(wishlist-content),
+  ::view-transition-old(checkout-content),
+  ::view-transition-new(checkout-content),
+  ::view-transition-old(checkout-success),
+  ::view-transition-new(checkout-success) {
+    animation-duration: 0.4s;
+  }
+
+  ::view-transition-old(dashboard-content),
+  ::view-transition-old(settings-content),
+  ::view-transition-old(portal-content),
+  ::view-transition-old(twofa-setup),
+  ::view-transition-old(home-content),
+  ::view-transition-old(products-content),
+  ::view-transition-old(category-content),
+  ::view-transition-old(product-detail),
+  ::view-transition-old(pricing-content),
+  ::view-transition-old(wishlist-content),
+  ::view-transition-old(checkout-content),
+  ::view-transition-old(checkout-success) {
+    animation-name: fade-out;
+  }
+
+  ::view-transition-new(dashboard-content),
+  ::view-transition-new(settings-content),
+  ::view-transition-new(portal-content),
+  ::view-transition-new(twofa-setup),
+  ::view-transition-new(home-content),
+  ::view-transition-new(products-content),
+  ::view-transition-new(category-content),
+  ::view-transition-new(product-detail),
+  ::view-transition-new(pricing-content),
+  ::view-transition-new(wishlist-content),
+  ::view-transition-new(checkout-content),
+  ::view-transition-new(checkout-success) {
+    animation-name: fade-in-scale;
+  }
+
+  /* Slide transition for page titles */
+  ::view-transition-old(page-title) {
+    animation: slide-out-up 0.3s cubic-bezier(0.4, 0, 1, 1);
+  }
+
+  ::view-transition-new(page-title) {
+    animation: slide-in-down 0.3s cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  @keyframes fade-out {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes fade-in-scale {
+    from {
+      opacity: 0;
+      transform: scale(0.98);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes slide-out-up {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    to {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes slide-in-down {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@layer components {
+  .add-button {
+    background-color: var(--color-foreground);
+    color: var(--color-background);
+    border: none;
+    outline: none;
+    padding: 8px 24px;
+  }
+
+  .add-button:hover {
+    opacity: 0.8;
+  }
+
+  /* Sonner toast styles using CSS variables from theme */
+  .toaster [data-sonner-toast] {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    border: 1px solid var(--color-border);
+    font-family: var(--font-mono);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .toaster [data-sonner-toast][data-type="success"] {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    border-color: var(--color-border);
+  }
+
+  .toaster [data-sonner-toast][data-type="error"] {
+    background-color: var(--color-background);
+    color: var(--color-destructive);
+    border-color: var(--color-destructive);
+  }
+
+  .toaster [data-sonner-toast][data-description] {
+    color: var(--color-muted-foreground);
+  }
+
+  .toaster [data-sonner-toast] [data-action] {
+    background-color: var(--color-primary);
+    color: var(--color-primary-foreground);
+    border-radius: var(--radius-sm);
+  }
+
+  .toaster [data-sonner-toast] [data-cancel] {
+    background-color: var(--color-muted);
+    color: var(--color-muted-foreground);
+    border-radius: var(--radius-sm);
+  }
+
+  .toaster [data-sonner-toast] [data-close-button] {
+    background-color: var(--color-muted);
+    border-color: var(--color-border);
+  }
+
+  .toaster [data-sonner-toast] [data-close-button]:hover {
+    background-color: var(--color-accent);
+  }
+
+  /* Remove default Sonner theme colors */
+  .toaster {
+    --normal-bg: var(--color-background);
+    --normal-text: var(--color-foreground);
+    --normal-border: var(--color-border);
+  }
+}
+
+@layer utilities {
+
+  /* Additional animations */
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in var(--duration-fade-in, 0.6s) ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scale-in var(--duration-scale-in, 0.5s) ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-in-up {
+    --slide-distance: 10px;
+    animation: slide-up var(--duration-fade-in-up, 0.6s) ease-out forwards;
+    opacity: 0;
+  }
+
+  .stagger-animation {
+    opacity: 0;
+    animation: slide-up var(--duration-slide-up, 0.8s) ease-out forwards;
+  }
+
+  .stagger-1 {
+    animation-delay: 0.1s;
+  }
+
+  .stagger-2 {
+    animation-delay: 0.2s;
+  }
+
+  .stagger-3 {
+    animation-delay: 0.3s;
+  }
+
+  .stagger-4 {
+    animation-delay: 0.4s;
+  }
+
+  .image-loading {
+    background: linear-gradient(90deg,
+        var(--color-muted) 25%,
+        var(--color-accent) 50%,
+        var(--color-muted) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  .animate-shimmer {
+    animation: shimmer var(--duration-shimmer, 2s) linear infinite;
+  }
+
+  .hover\:scale-102:hover {
+    transform: scale(1.02);
+  }
+
+  .hover\:scale-105:hover {
+    transform: scale(1.05);
+  }
+}
