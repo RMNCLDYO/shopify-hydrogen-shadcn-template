@@ -31,6 +31,10 @@ export function Header({
   publicStoreDomain,
 }: HeaderProps) {
   const { shop, menu } = header;
+
+  // Use Shopify brand logo if it exists, otherwise fallback to shop name
+  const logoUrl = shop.brand?.logo?.image?.url;
+
   return (
     <header className="px-4 sm:px-6 md:px-8 py-4 md:py-6 border-b border-border">
       <div className="mx-auto max-w-7xl flex items-center justify-between gap-4">
@@ -40,9 +44,17 @@ export function Header({
           end
           className="flex items-center hover:opacity-80 transition-opacity flex-shrink-0"
         >
-          <strong className="text-xl md:text-2xl font-bold tracking-tight">
-            {shop.name}
-          </strong>
+          {logoUrl ? (
+            <img
+              src={logoUrl}
+              alt={shop.name}
+              className="h-8 md:h-10 w-auto"
+            />
+          ) : (
+            <strong className="text-xl md:text-2xl font-bold tracking-tight">
+              {shop.name}
+            </strong>
+          )}
         </NavLink>
         <HeaderMenu
           menu={menu}
