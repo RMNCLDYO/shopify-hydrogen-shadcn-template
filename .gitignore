@@ -39,6 +39,10 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# generated types (run npm run codegen to generate)
+storefrontapi.generated.d.ts
+customer-accountapi.generated.d.ts
+
 # framework
 .shopify
 .react-router
